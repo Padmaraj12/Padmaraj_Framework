@@ -3,7 +3,9 @@ package com.training.sanity.tests;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -22,6 +24,8 @@ public class LoginTests {
 	private LoginPOM loginPOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
+	
+	
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws IOException {
@@ -36,8 +40,9 @@ public class LoginTests {
 		loginPOM = new LoginPOM(driver); 
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver); 
-		// open the browser 
+		driver.manage().timeouts().implicitlyWait(Integer.parseInt(properties.getProperty("implicitWait")), TimeUnit.SECONDS);
 		driver.get(baseUrl);
+
 	}
 	
 	@AfterMethod
@@ -46,10 +51,14 @@ public class LoginTests {
 		driver.quit();
 	}
 	@Test
-	public void validLoginTest() {
-		loginPOM.sendUserName("admin");
-		loginPOM.sendPassword("admin@123");
+	public void validLoginTest() throws InterruptedException {
+		
+		loginPOM.sendUserName("agcistns04aa@gmail.com");
+		loginPOM.sendPassword("Veer@123");
 		loginPOM.clickLoginBtn(); 
 		screenShot.captureScreenShot("First");
+		
+		
+		
 	}
 }
