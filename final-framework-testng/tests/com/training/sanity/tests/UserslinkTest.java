@@ -77,7 +77,7 @@ public class UserslinkTest {
 		userslink.selectRole();
 		userslink.clickAddNewUser();
 		Thread.sleep(3000);
-		userslink.getnewuser();
+		System.out.println(userslink.getnewuser());
 		Thread.sleep(5000);
 		userslink.clickAllUsers();
 
