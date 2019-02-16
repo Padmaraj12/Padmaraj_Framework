@@ -93,6 +93,7 @@ public class Userslink {
 		Select role = new Select(driver.findElement(By.id("role")));
 		role.selectByVisibleText("Agent");
 		role.selectByIndex(2);
+
 	}
 
 	@FindBy(xpath = "//input[@id='createusersub']")
